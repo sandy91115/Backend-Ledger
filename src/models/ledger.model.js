@@ -48,6 +48,6 @@ ledgerSchema.pre('findOneAndReplace', preventLedgerModification);
 
 
 
-const ledgerModel=mongoose.model('ledger',ledegerSchema);
+const ledgerModel=mongoose.model('ledger',ledgerSchema);
 
 module.exports = ledgerModel;
