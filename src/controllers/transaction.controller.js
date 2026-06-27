@@ -113,5 +113,23 @@ async function createTransaction(req, res){
         type: "CREDIT"
     },{session})
 
+    transaction.status= "COMPLETED"
+    await transaction.save({session})
 
+    await session.commitTransaction()
+    session.endSession()
+
+
+    //send email notification
+
+    await emailService.sendTransactionEmail(req.user.email, req.user.name, amount, toAccount,fromAmount)
+    return res.status(201).josn({
+        message: "Transaction completed successfully",
+        transaction: transaction
+    })
+
+}
+
+module.exports = {
+    createTransaction
 }
