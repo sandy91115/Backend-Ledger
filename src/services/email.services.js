@@ -39,9 +39,9 @@ const sendEmail = async (to, subject, text, html) => {
     }
 };
 
-async function sendRegistrationEmail(useEmail, name){
+async function sendRegistrationEmail(userEmail, name){
     const subject ='Welcome to Backend Ledger'
-    const text =`Hello ${name},|n|n Thank you for registering at backend ledger`
+    const text =`Hello ${name},\n\nThank you for registering at backend ledger`
     const html = `<p>Hello ${name},<p>Thank you for registering at backend ledger</p></p>`
 
     await sendEmail(userEmail, subject, text, html);
@@ -57,7 +57,7 @@ async function sendTransactionEmail(userEmail, name, amount, toAccount){
 async function sendTransactionFailureEmail(userEmail, name, amount, toAccount){
     const subject = 'Transaction Failed';
     const text = `Hello ${name}, \n\n We regret to infrom you that your transaction of $${amount} to account ${toAccount} failed`;
-    const html = `<p> Hello ${NamedNodeMap}, </p>We regret to inform you that yor transaction of $${amount} is failed`;
+    const html = `<p>Hello ${name},</p><p>We regret to inform you that your transaction of $${amount} to account ${toAccount} failed.</p>`;
 
     await sendEmail(userEmail, subject, text, html);
 }
